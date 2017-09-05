@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description"
+	content="mobile first, app, web app, responsive, admin dashboard, flat, flat ui">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+<link rel="stylesheet" th:href="@{bootstrap/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{bootstrap/css/plugin.css}">
+<link rel="stylesheet" th:href="@{bootstrap/css/style.css}">
+<meta content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{bootstrap/css/bootstrap-theme.min.css}"
+	rel="stylesheet" />
+<link
+	th:href="@{bootstrap/datetimepicker/css/bootstrap-datetimepicker.min.css}"
+	rel="stylesheet" media="screen" />
+</head>
+<body>
+	<!-- header -->
+	<header id="header" class="navbar bg bg-black">
+		<a href="docs.html" class="btn btn-link pull-right"><i
+			class="icon-question icon-xlarge text-default"></i></a> <a
+			class="navbar-brand" href="#">first</a>
+	</header>
+	<!-- / header -->
+	<section id="content">
+		<div class="main padder">
+			<div class="row">
+				<div class="col-lg-4 col-offset-4 m-t-large"  style="margin-left: 33.33333333%;">
+					<section class="panel">
+						<header class="panel-heading text-center"> 注 册 </header>
+						<form action="index.html" class="padder">
+							<div class="block">
+								<label class="control-label">账号</label> <input
+									type="text" placeholder="账号"
+									class="form-control">
+							</div>
+
+							<div class="block">
+								<label class="control-label">密码</label> <input
+									type="password" id="Password" placeholder="密码"
+									class="form-control">
+							</div>
+							<div class="block">
+								<label class="control-label">密码验证</label> <input
+									type="password" id="Password" placeholder="密码"
+									class="form-control">
+							</div>
+							<div class="checkbox">
+								<label> <input type="checkbox"> 我已经阅读并接受  <a
+									href="#">服务和隐私政策的条款</a>
+								</label>
+							</div>
+							<button type="submit" class="btn btn-info">注册</button>
+							<div class="line line-dashed"></div>
+		
+							<div class="line line-dashed"></div>
+							<p class="text-muted text-center">
+								<small>已有账号?</small>
+							</p>
+							<a href="signin.html" class="btn  btn-block">去登录</a>
+						</form>
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- footer -->
+
+	<!-- / footer -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.js"></script>
+	<!-- app -->
+	<script src="js/app.js"></script>
+	<script src="js/app.plugin.js"></script>
+	<script src="js/app.data.js"></script>
+</body>
+</html>
