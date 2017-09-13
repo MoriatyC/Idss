@@ -22,158 +22,128 @@
 	rel="stylesheet" media="screen" />
 </head>
 <body>
-	<!-- header -->
-	<header id="header" class="navbar">
-
-		
-		<a class="navbar-brand" href="#">SMZ</a>
-
-		<ul class="nav navbar-nav hidden-sm">
-			
-			<li><div class="m-t-small">
-					<a class="btn btn-large btn-info" data-toggle="modal" href="#modal"> 欢迎来到项目初审智能决策系统</a>
-				</div></li>
-		
-				
-		</ul>
-
-	</header>
-	<!-- / header -->
-	<!-- nav -->
-	<nav id="nav" class="nav-primary visible-lg nav-vertical">
-		<ul class="nav" data-spy="affix" data-offset-top="50">
-			<li><a href="index.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />项目信息</a></li>
-			<li class="nav"><a href="people.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />人员信息</a></li>
-			<li><a href="subject.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />模型</a></li>
-			<li class="dropdown-submenu">
-		        <a href="#"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />知识库</a>
-		        <ul class="dropdown-menu">        
-		          <li><a href="fact.html">事实库</a></li>
-		          <li><a href="rule.html">规则库</a></li>
-		        </ul>
-		      </li>
-		</ul>
-	</nav>
-	<!-- / nav -->
-	<section id="content">
-		<section class="main padder">
-			<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h2>事实库管理</h2>
-		</div>
-		<form action="#" class="form-horizontal center-block"
-			style="width: 40%" th:action="@{/fact}" th:object="${fact}"
-			method="post">
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 事实标题 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="事实标题"
-						th:field="*{name}" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 事实描述 : </label>
-				<div class="col-sm-10">
-					<textarea class="form-control" id="name" placeholder="事实描述"
-						th:field="*{description}" />
-				</div>
-			</div>
-			
-			<div class=" center-block" style="text-align: center">
-				<button type="submit" class="  btn btn-primary btn-lg">添加</button>
-				<button type="reset" class="  btn btn-warning btn-lg">重置</button>
-				<button id="delete-fact-btn" type="button"
-					class="  btn btn-danger btn-lg">删除</button>
-				<button type="button" class="  btn btn-info btn-lg" id="edit-fact">编辑</button>
-			</div>
-		</form>
-	</div>
-
-	<div th:if="${not #lists.isEmpty(facts)}">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">事实列表</h3>
-			</div>
-			<table class="table table-hover   ">
-				<thead>
-					<th>标题</th>
-					<th>描述</th>
-				</thead>
-				<tbody>
-					<tr th:id="${fact.id}" th:each="fact:${facts}">
-						<td th:text="${fact.name}"></td>
-						<td th:text="${fact.description}"></td>
-					</tr>
-				</tbody>
-			</table>
-
-
-		</div>
-
-
-
-	</div>
-	<div th:unless="${ not #lists.isEmpty(facts)}">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">事实库为空</h3>
-			</div>
-
-		</div>
-	</div>
-
-
-
-
-	<div class="modal fade " tabindex="-1" role="dialog" id="fact-modal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">事实信息修改</h4>
-				</div>
-				<div class="modal-body" id="edit">
-			
-
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 事实标题 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-factName" placeholder="事实标题"
-									 />
+	<div th:include="base :: navbar"></div>
+	<div style="padding-left: 90px;">
+		<section id="content">
+			<section class="main padder">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>事实库管理</h2>
+					</div>
+					<form action="#" class="form-horizontal center-block"
+						style="width: 40%" th:action="@{/fact}" th:object="${fact}"
+						method="post">
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 事实标题 : </label>
+							<div class="col-sm-10">
+								<input class="form-control" id="name" placeholder="事实标题"
+									th:field="*{name}" />
 							</div>
 						</div>
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 事实描述 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-factDesc" placeholder="事实描述"
-									 />
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 事实描述 : </label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="name" placeholder="事实描述"
+									th:field="*{description}" />
 							</div>
 						</div>
-			 
-						
-				
 
-					<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="edit-fact-save" class="btn btn-primary">保存</button>
+						<div class=" center-block" style="text-align: center">
+							<button type="submit" class="  btn btn-primary btn-lg">添加</button>
+							<button type="reset" class="  btn btn-warning btn-lg">重置</button>
+							<button id="delete-fact-btn" type="button"
+								class="  btn btn-danger btn-lg">删除</button>
+							<button type="button" class="  btn btn-info btn-lg"
+								id="edit-fact">编辑</button>
+						</div>
+					</form>
+				</div>
+
+				<div th:if="${not #lists.isEmpty(facts)}">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">事实列表</h3>
+						</div>
+						<table class="table table-hover   ">
+							<thead>
+								<th>标题</th>
+								<th>描述</th>
+							</thead>
+							<tbody>
+								<tr th:id="${fact.id}" th:each="fact:${facts}">
+									<td th:text="${fact.name}"></td>
+									<td th:text="${fact.description}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+
 					</div>
 
 
+
 				</div>
-				
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
+				<div th:unless="${ not #lists.isEmpty(facts)}">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">事实库为空</h3>
+						</div>
+
+					</div>
+				</div>
+
+
+
+
+				<div class="modal fade " tabindex="-1" role="dialog" id="fact-modal">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">事实信息修改</h4>
+							</div>
+							<div class="modal-body" id="edit">
+
+
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 事实标题 :
+									</label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-factName"
+											placeholder="事实标题" />
+									</div>
+								</div>
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 事实描述 :
+									</label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-factDesc"
+											placeholder="事实描述" />
+									</div>
+								</div>
+
+
+
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<button id="edit-fact-save" class="btn btn-primary">保存</button>
+								</div>
+
+
+							</div>
+
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+			</section>
 	</div>
-		</section>
 	</section>
 
 	<script th:src="@{bootstrap/js/bootstrap.min.js}">

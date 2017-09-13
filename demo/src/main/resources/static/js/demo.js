@@ -355,14 +355,14 @@ $('#edit-rule').on('click', function() {
 		if($("#"+cur).children('td').eq(0).text()=="年龄") {
 			$("#s1").css('display','none'); 
 			$("#s2").css('display','none'); 
-			$("#edit-min").css('display','show'); 
-			$("#edit-max").css('display','show'); 
+			$("#edit-min").css('display','block'); 
+			$("#edit-max").css('display','block'); 
 			$("#edit-min").val($("#"+cur).children('td').eq(1).text());
 			$("#edit-max").val($("#"+cur).children('td').eq(2).text());
 		}
 		if($("#"+cur).children('td').eq(0).text()=="职称") {
-			$("#s1").css('display','show'); 
-			$("#s2").css('display','show'); 
+			$("#s1").css('display','block'); 
+			$("#s2").css('display','block'); 
 			$("#edit-min").css('display','none'); 
 			$("#edit-max").css('display','none'); 
 		}

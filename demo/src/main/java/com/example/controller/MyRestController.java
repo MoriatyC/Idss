@@ -47,7 +47,7 @@ public class MyRestController {
     @Autowired
     private Judge judge;
     @RequestMapping("/autojudge")
-    public String autoJudg(Integer id) {
+    public String autoJudge(Integer id) {
         Project project = projectRepository.findById(id);
         Subject subject = project.getSubject();
         String[] rules = subject.getRules().split(" ");

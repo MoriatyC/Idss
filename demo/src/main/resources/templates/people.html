@@ -23,209 +23,174 @@
 </head>
 <body>
 	<!-- header -->
-	<header id="header" class="navbar">
-
-		
-		<a class="navbar-brand" href="#">SMZ</a>
-
-		<ul class="nav navbar-nav hidden-sm">
-			
-			<li><div class="m-t-small">
-					<a class="btn btn-large btn-info" data-toggle="modal" href="#modal"> 欢迎来到项目初审智能决策系统</a>
-				</div></li>
-		
-				
-		</ul>
-
-	</header>
-	<!-- / header -->
-	<!-- nav -->
-	<nav id="nav" class="nav-primary visible-lg nav-vertical">
-		<ul class="nav" data-spy="affix" data-offset-top="50">
-			<li><a href="index.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />项目信息</a></li>
-			<li class="nav"><a href="people.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />人员信息</a></li>
-			<li><a href="subject.html"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />模型</a></li>
-			<li class="dropdown-submenu">
-		        <a href="#"><span
-					class="glyphicon  glyphicon-list btn-lg" aria-hidden="true"></span><br />知识库</a>
-		        <ul class="dropdown-menu">        
-		          <li><a href="fact.html">事实库</a></li>
-		          <li><a href="rule.html">规则库</a></li>
-		        </ul>
-		      </li>
-		</ul>
-	</nav>
+	<div th:include="base :: navbar"></div>
 	<!-- / nav -->
-	<section id="content">
-		<section class="main padder">
-			<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h2>教师信息管理</h2>
-		</div>
-		<form action="#" class="form-horizontal center-block"
-			style="width: 40%" th:action="@{/people}" th:object="${person}"
-			method="post">
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 姓名 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="姓名"
-						th:field="*{name}" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 学院 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="学院"
-						th:field="*{college}" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 年龄 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="年龄"
-						th:field="*{age}" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 性别 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="性别"
-						th:field="*{sex}" />
-
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="ID" class="col-sm-2 control-label"> 职称 : </label>
-				<div class="col-sm-10">
-					<input class="form-control" id="name" placeholder="职称"
-						th:field="*{title}" />
-				</div>
-			</div>
-			<div class=" center-block" style="text-align: center">
-				<button type="submit" class="  btn btn-primary btn-lg">添加</button>
-				<button type="reset" class="  btn btn-warning btn-lg">重置</button>
-				<button id="delete-person-btn" type="button"
-					class="  btn btn-danger btn-lg">删除</button>
-				<button type="button" class="  btn btn-info btn-lg" id="edit-person">编辑</button>
-			</div>
-		</form>
-	</div>
-
-	<div th:if="${not #lists.isEmpty(persons)}">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">教师列表</h3>
-			</div>
-			<table class="table table-hover   ">
-				<thead>
-					<th>姓名</th>
-					<th>学院</th>
-					<th>年龄</th>
-					<th>性别</th>
-					<th>职称</th>
-				</thead>
-				<tbody>
-					<tr th:id="${person.id}" th:each="person:${persons}">
-						<td th:text="${person.name}"></td>
-						<td th:text="${person.college}"></td>
-						<td th:text="${person.age}"></td>
-						<td th:text="${person.sex}"></td>
-						<td th:text="${person.title}"></td>
-
-					</tr>
-				</tbody>
-			</table>
-
-
-		</div>
-
-
-
-	</div>
-	<div th:unless="${ not #lists.isEmpty(persons)}">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">教师列表为空</h3>
-			</div>
-
-		</div>
-	</div>
-
-
-
-
-	<div class="modal fade " tabindex="-1" role="dialog" id="person-modal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">教师信息修改</h4>
-				</div>
-				<div class="modal-body" id="edit">
-			
-
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 姓名 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-name" placeholder="姓名"
-									 />
+	<div style="padding-left: 90px;">
+		<section id="content">
+			<section class="main padder">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h2>教师信息管理</h2>
+					</div>
+					<form action="#" class="form-horizontal center-block"
+						style="width: 40%" th:action="@{/people}" th:object="${person}"
+						method="post">
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 姓名 : </label>
+							<div class="col-sm-10">
+								<input class="form-control" id="name" placeholder="姓名"
+									th:field="*{name}" />
 							</div>
 						</div>
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 学院 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-college" placeholder="学院"
-									 />
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 学院 : </label>
+							<div class="col-sm-10">
+								<input class="form-control" id="name" placeholder="学院"
+									th:field="*{college}" />
 							</div>
 						</div>
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 年龄 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-age" placeholder="年龄"
-									 />
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 年龄 : </label>
+							<div class="col-sm-10">
+								<input class="form-control" id="name" placeholder="年龄"
+									th:field="*{age}" />
 							</div>
 						</div>
-						<div >
-							<label for="ID" class="col-lg-2 control-label"> 性别 : </label>
-							<div class="col-lg-10">
-								<input class="form-control" id="edit-sex" placeholder="性别"
-							 />
+						<div class="form-group">
+							<label for="ID" class="col-sm-2 control-label"> 性别 : </label>
+							<div class="col-sm-10">
+								<input class="form-control" id="name" placeholder="性别"
+									th:field="*{sex}" />
 
 							</div>
 						</div>
-						<div >
+						<div class="form-group">
 							<label for="ID" class="col-sm-2 control-label"> 职称 : </label>
 							<div class="col-sm-10">
-								<input class="form-control" id="edit-title" placeholder="职称"
-									 />
+								<input class="form-control" id="name" placeholder="职称"
+									th:field="*{title}" />
 							</div>
 						</div>
-			 
-						
-				
+						<div class=" center-block" style="text-align: center">
+							<button type="submit" class="  btn btn-primary btn-lg">添加</button>
+							<button type="reset" class="  btn btn-warning btn-lg">重置</button>
+							<button id="delete-person-btn" type="button"
+								class="  btn btn-danger btn-lg">删除</button>
+							<button type="button" class="  btn btn-info btn-lg"
+								id="edit-person">编辑</button>
+						</div>
+					</form>
+				</div>
 
-					<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-								<button id="edit-save" class="btn btn-primary">保存</button>
+				<div th:if="${not #lists.isEmpty(persons)}">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">教师列表</h3>
+						</div>
+						<table class="table table-hover   ">
+							<thead>
+								<th>姓名</th>
+								<th>学院</th>
+								<th>年龄</th>
+								<th>性别</th>
+								<th>职称</th>
+							</thead>
+							<tbody>
+								<tr th:id="${person.id}" th:each="person:${persons}">
+									<td th:text="${person.name}"></td>
+									<td th:text="${person.college}"></td>
+									<td th:text="${person.age}"></td>
+									<td th:text="${person.sex}"></td>
+									<td th:text="${person.title}"></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+
 					</div>
 
 
-				</div>
-				
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-		</section>
-	</section>
 
+				</div>
+				<div th:unless="${ not #lists.isEmpty(persons)}">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h3 class="panel-title">教师列表为空</h3>
+						</div>
+
+					</div>
+				</div>
+
+
+
+
+				<div class="modal fade " tabindex="-1" role="dialog"
+					id="person-modal">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h4 class="modal-title">教师信息修改</h4>
+							</div>
+							<div class="modal-body" id="edit">
+
+
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 姓名 : </label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-name" placeholder="姓名" />
+									</div>
+								</div>
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 学院 : </label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-college" placeholder="学院" />
+									</div>
+								</div>
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 年龄 : </label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-age" placeholder="年龄" />
+									</div>
+								</div>
+								<div>
+									<label for="ID" class="col-lg-2 control-label"> 性别 : </label>
+									<div class="col-lg-10">
+										<input class="form-control" id="edit-sex" placeholder="性别" />
+
+									</div>
+								</div>
+								<div>
+									<label for="ID" class="col-sm-2 control-label"> 职称 : </label>
+									<div class="col-sm-10">
+										<input class="form-control" id="edit-title" placeholder="职称" />
+									</div>
+								</div>
+
+
+
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">关闭</button>
+									<button id="edit-save" class="btn btn-primary">保存</button>
+								</div>
+
+
+							</div>
+
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+			</section>
+		</section>
+	</div>
 	<script th:src="@{bootstrap/js/bootstrap.min.js}">
 		
 	</script>
