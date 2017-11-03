@@ -1,21 +1,19 @@
 package com.example.controller;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.example.dao.FactRepository;
 import com.example.dao.PersonRepository;
@@ -25,11 +23,12 @@ import com.example.dao.SubjectRepository;
 import com.example.model.Fact;
 import com.example.model.Person;
 import com.example.model.Project;
-import com.example.model.Subject;
-import com.example.utils.Judge;
+import com.example.service.EmailService;
 
 @Controller
 public class SearchController {
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private PersonRepository personRepository;
     @Autowired
@@ -41,17 +40,19 @@ public class SearchController {
     @Autowired
     private RuleRepository ruleRepository;
 
-    
     @RequestMapping("/index")
     public String index(Model model) {
+        emailService.mailSender();
         model.addAttribute("persons", personRepository.findAll());
         model.addAttribute("project", new Project());
         model.addAttribute("projects", projectRepository.findAll());
         model.addAttribute("subjects", subjectRepository.findAll());
         model.addAttribute("projectEdit", new Project());
+        Locale locale = LocaleContextHolder.getLocale();
+        System.out.println(locale);
+        System.out.println("11111111111111111111111111111111111111111111");
         return "index";
     }
-    
     @RequestMapping("signup")
     public String signup() {
 
