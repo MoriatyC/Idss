@@ -40,12 +40,9 @@ public class SearchController {
     private FactRepository factRepository;
     @Autowired
     private RuleRepository ruleRepository;
-    @Autowired
-    private CrawlerService crawlerService;
 
     @RequestMapping("/index")
     public String index(Model model) {
-        crawlerService.hasGood();
         model.addAttribute("persons", personRepository.findAll());
         model.addAttribute("project", new Project());
         model.addAttribute("projects", projectRepository.findAll());
