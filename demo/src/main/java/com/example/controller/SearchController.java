@@ -23,6 +23,7 @@ import com.example.dao.SubjectRepository;
 import com.example.model.Fact;
 import com.example.model.Person;
 import com.example.model.Project;
+import com.example.service.CrawlerService;
 import com.example.service.EmailService;
 
 @Controller
@@ -39,10 +40,12 @@ public class SearchController {
     private FactRepository factRepository;
     @Autowired
     private RuleRepository ruleRepository;
+    @Autowired
+    private CrawlerService crawlerService;
 
     @RequestMapping("/index")
     public String index(Model model) {
-        emailService.mailSender();
+        crawlerService.hasGood();
         model.addAttribute("persons", personRepository.findAll());
         model.addAttribute("project", new Project());
         model.addAttribute("projects", projectRepository.findAll());
@@ -50,7 +53,6 @@ public class SearchController {
         model.addAttribute("projectEdit", new Project());
         Locale locale = LocaleContextHolder.getLocale();
         System.out.println(locale);
-        System.out.println("11111111111111111111111111111111111111111111");
         return "index";
     }
     @RequestMapping("signup")
